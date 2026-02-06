@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { PageId } from '../types';
+import type { PageId } from '../types';
 
 interface FooterProps {
   onNavigate: (page: PageId) => void;

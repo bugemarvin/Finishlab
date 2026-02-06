@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { PageId } from '../types';
+import type { PageId } from '../types';
 
 interface HeaderProps {
   currentPage: PageId;
