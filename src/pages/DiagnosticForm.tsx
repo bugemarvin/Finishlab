@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import type { PageId } from '../types';
+import { PageId } from '../types';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface DiagnosticFormProps {
@@ -58,7 +58,7 @@ const AITip: React.FC<{ text: string }> = ({ text }) => (
   </div>
 );
 
-const DiagnosticForm: React.FC<DiagnosticFormProps> = () => {
+const DiagnosticForm: React.FC<DiagnosticFormProps> = ({ onNavigate }) => {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
 
   const handleSubmit = async (e: React.FormEvent) => {

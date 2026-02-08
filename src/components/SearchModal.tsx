@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import type { PageId } from '../types';
+import { PageId } from '../types';
 import { GoogleGenAI } from "@google/genai";
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -111,12 +111,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onNavigate }
         }`,
         config: { responseMimeType: "application/json" }
       });
-      const text = response.text;
-      if (!text) {
-        console.error("AI response text is undefined");
-        return;
-      }
-      const data = JSON.parse(text);
+      const data = JSON.parse(response.text);
       setAiDiagnosis(data);
       // On mobile, if AI diagnosis arrives, don't necessarily switch tabs automatically to avoid jarring UI, 
       // but the UI will show a badge or the side panel on desktop.

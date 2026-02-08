@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
-import type { PageId } from '../types';
+import { PageId } from '../types';
+import { motion } from 'framer-motion';
 
 interface HeaderProps {
   currentPage: PageId;
@@ -11,6 +12,7 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenSearch }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   const navItems = [
     { id: 'home', label: 'Home' },
@@ -20,7 +22,6 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenSearch }
     { id: 'faq', label: 'FAQ' },
   ] as const;
 
-  // Handle scroll state for header styling
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
@@ -29,7 +30,6 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenSearch }
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Handle navigation and close menu
   const handleNavigate = (page: PageId) => {
     onNavigate(page);
     setIsMenuOpen(false);
@@ -40,7 +40,6 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenSearch }
     onOpenSearch();
   };
 
-  // Prevent background scroll when mobile menu is open
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -59,22 +58,52 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenSearch }
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 h-full flex items-center justify-between">
-        {/* Logo Section */}
-        <div 
-          className="relative flex items-center gap-2 cursor-pointer group z-[160]"
+        {/* Animated FINISH Logo */}
+        <motion.div 
+          className="relative flex items-center gap-2 cursor-pointer group z-[160] outline-none"
           onClick={() => handleNavigate('home')}
           role="button"
           tabIndex={0}
           aria-label="Navigate to Home"
           onKeyDown={(e) => e.key === 'Enter' && handleNavigate('home')}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
         >
-          <span className="font-extrabold text-2xl tracking-tighter text-slate-900 group-hover:text-green-600 transition-colors">
+          <motion.span 
+            className="font-extrabold text-2xl tracking-tighter text-slate-900 transition-all duration-300"
+            animate={isHovered ? {
+              scale: 1.1,
+              color: "#16a34a",
+              fontFamily: "'Inter', sans-serif",
+              letterSpacing: "-0.05em",
+            } : {
+              scale: 1,
+              color: "#0f172a", // slate-900
+              fontFamily: ["'Inter', sans-serif", "'JetBrains Mono', monospace", "'Playfair Display', serif", "'Inter', sans-serif"],
+              letterSpacing: ["-0.05em", "0.05em", "-0.02em", "-0.05em"],
+            }}
+            transition={isHovered ? {
+              type: "spring",
+              stiffness: 400,
+              damping: 25
+            } : {
+              fontFamily: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+              letterSpacing: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+              default: { duration: 0.3 }
+            }}
+          >
             FINISH
-          </span>
-          <div className="h-1.5 w-1.5 rounded-full bg-green-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-        </div>
+          </motion.span>
+          
+          <motion.div 
+            className="h-1.5 w-1.5 rounded-full bg-green-500"
+            initial={{ opacity: 0, scale: 0 }}
+            animate={isHovered ? { opacity: 1, scale: 1.2 } : { opacity: 0, scale: 0 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          />
+        </motion.div>
 
-        {/* Desktop Navigation (Visible only on lg and up) */}
+        {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center gap-8 xl:gap-10">
           {navItems.map((item) => (
             <button
@@ -94,7 +123,6 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenSearch }
 
         {/* Action Area */}
         <div className="flex items-center gap-3 z-[160]">
-          {/* Quick Search Trigger */}
           <button 
             onClick={onOpenSearch}
             className="flex items-center gap-2 px-3 sm:px-4 py-2.5 text-slate-500 hover:text-slate-900 rounded-xl bg-slate-100/50 hover:bg-slate-100 transition-all text-xs font-bold group"
@@ -109,7 +137,6 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenSearch }
             </kbd>
           </button>
           
-          {/* Primary Action Button (Desktop only) */}
           <button 
             onClick={() => handleNavigate('diagnostic')}
             className="hidden lg:block bg-green-600 hover:bg-green-700 text-white px-6 xl:px-8 py-3 rounded-xl font-black text-[12px] uppercase tracking-widest transition-all transform active:scale-95 shadow-xl shadow-green-100 border-none"
@@ -117,7 +144,6 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenSearch }
             Fix My App
           </button>
 
-          {/* Mobile Menu Button (lg:hidden covers mobile and tablet) */}
           <button 
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="lg:hidden w-11 h-11 flex items-center justify-center rounded-xl bg-slate-900 text-white hover:bg-slate-800 transition-colors shadow-lg active:scale-95"
@@ -144,7 +170,6 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenSearch }
         }`}
       >
         <div className="pt-28 px-6 pb-12 h-full flex flex-col overflow-y-auto">
-          {/* Animated Mobile Links */}
           <nav className="flex flex-col space-y-2 mb-10">
             {navItems.map((item, index) => (
               <button
@@ -163,7 +188,6 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenSearch }
               </button>
             ))}
             
-            {/* Mobile Search - Integration */}
             <button
               onClick={handleOpenSearchFromMenu}
               className={`flex items-center gap-4 py-6 text-slate-400 transition-all ${isMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-12 opacity-0'}`}
@@ -178,7 +202,6 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenSearch }
             </button>
           </nav>
 
-          {/* Mobile Footer Area / CTA */}
           <div className={`mt-auto space-y-8 ${isMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`} style={{ transitionDelay: '350ms', transitionDuration: '800ms' }}>
             <div className="p-1 bg-slate-900 rounded-[2rem] shadow-2xl shadow-slate-200">
               <button 

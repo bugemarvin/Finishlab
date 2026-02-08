@@ -1,6 +1,6 @@
 
-import React, { useState } from 'react';
-import type { PageId } from '../types';
+import React, { useState, useEffect } from 'react';
+import { PageId } from '../types';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface HomeProps {
@@ -21,28 +21,92 @@ const JOURNEYS: Record<AudienceId, { role: string; stages: JourneyStage[] }> = {
   founder: {
     role: "Founders & Solo-Builders",
     stages: [
-      { label: "Concept", title: "The Spark", desc: "You have a vision and a validated idea. You start building fast.", status: 'info' },
-      { label: "Velocity", title: "The Prototype", desc: "AI builders like Cursor or Lovable get you to 80% in days.", status: 'info' },
-      { label: "The Wall", title: "Technical Friction", desc: "Stripe won't connect. Auth loops are killing your conversion.", status: 'error', code: "ERR: PAYMENTS_BLOCKED" },
-      { label: "The Finish", title: "Revenue Live", desc: "FINISH Inc wires the last mile. You are officially in business.", status: 'success' }
+      { 
+        label: "Concept", 
+        title: "The Visionary Spark", 
+        desc: "You've validated the market and the dream is clear. You start building with raw speed, fueled by conviction.", 
+        status: 'info' 
+      },
+      { 
+        label: "Velocity", 
+        title: "The 80% Sprint", 
+        desc: "Cursor and Lovable get you further than ever. The UI is stunning and the core features are starting to click.", 
+        status: 'info' 
+      },
+      { 
+        label: "The Wall", 
+        title: "Technical Paralysis", 
+        desc: "Stripe webhooks are failing, auth tokens are leaking, and the AI is hallucinating fixes. You're stalled at the 1-yard line.", 
+        status: 'error', 
+        code: "CRIT_ERR: PRODUCTION_GATEWAY_TIMEOUT" 
+      },
+      { 
+        label: "The Finish", 
+        title: "Production Reality", 
+        desc: "FINISH Inc performs surgical engineering. We wire the last mile, secure the infra, and turn your prototype into a profit machine.", 
+        status: 'success' 
+      }
     ]
   },
   developer: {
     role: "Technical Leads & Devs",
     stages: [
-      { label: "Init", title: "Clean Slate", desc: "Starting with a solid architecture and modern stack.", status: 'info' },
-      { label: "Sprawl", title: "AI Technical Debt", desc: "AI-generated code becomes a maintenance nightmare.", status: 'warning', code: "WARN: DEBT_THRESHOLD_EXCEEDED" },
-      { label: "Stall", title: "Infrastructure Hell", desc: "Deployments fail. Hydration errors. You're losing 40h/week on bugs.", status: 'error', code: "500: DEPLOYMENT_FAILED" },
-      { label: "Handoff", title: "Production Stability", desc: "We refactor the core and stabilize the pipeline. You scale.", status: 'success' }
+      { 
+        label: "Init", 
+        title: "Architecture Draft", 
+        desc: "The stack is chosen and the repo is initialized. You're building clean, modular, and fast.", 
+        status: 'info' 
+      },
+      { 
+        label: "Sprawl", 
+        title: "The AI Debt Trap", 
+        desc: "Rapid-fire AI generation creates a sprawl of unmaintainable logic. Complexity spikes faster than you can refactor.", 
+        status: 'warning', 
+        code: "WARN: DEBT_THRESHOLD_EXCEEDED" 
+      },
+      { 
+        label: "Stall", 
+        title: "Infrastructure Hell", 
+        desc: "Hydration errors, database locks, and Vercel build loops. You're spending 40 hours a week on bugs instead of features.", 
+        status: 'error', 
+        code: "500: DEPLOYMENT_PIPELINE_COLLAPSE" 
+      },
+      { 
+        label: "Handoff", 
+        title: "Architectural Zen", 
+        desc: "We step in as your surgical reserve. We clean the debt, harden the core, and hand back a stable, scalable codebase.", 
+        status: 'success' 
+      }
     ]
   },
   startup: {
     role: "Growing Startups",
     stages: [
-      { label: "Seed", title: "The Build", desc: "Building the core product with a lean engineering team.", status: 'info' },
-      { label: "Feature", title: "Scale Friction", desc: "New features break old ones. Integration complexity spikes.", status: 'warning' },
-      { label: "Crisis", title: "Product-Market Stagnation", desc: "The app is too buggy to ship new features. Users are churned.", status: 'error', code: "ALRT: HIGH_CHURN_DETECTED" },
-      { label: "Launch", title: "Operational Velocity", desc: "We act as your 'FINISH' team, unblocking your core engineers.", status: 'success' }
+      { 
+        label: "Seed", 
+        title: "Market Capture", 
+        desc: "Your MVP is live and gaining traction. The team is small, lean, and hyper-focused on growth.", 
+        status: 'info' 
+      },
+      { 
+        label: "Feature", 
+        title: "Integration Friction", 
+        desc: "Scale brings complexity. Salesforce, custom LLMs, and multi-tier plan gating start to break your core stability.", 
+        status: 'warning' 
+      },
+      { 
+        label: "Crisis", 
+        title: "Product Stagnation", 
+        desc: "Technical debt has turned into a product ceiling. Churn is rising because you can't ship stability fixes fast enough.", 
+        status: 'error', 
+        code: "ALRT: CHURN_VELOCITY_CRITICAL" 
+      },
+      { 
+        label: "Launch", 
+        title: "Scaling Velocity", 
+        desc: "We act as your 'Finish Unit', unblocking your core engineers so they can return to high-impact innovation.", 
+        status: 'success' 
+      }
     ]
   }
 };
@@ -61,8 +125,106 @@ const TECHNICAL_AUDIT = [
   { label: "CI-CD-INF", name: "Cloud Handoff", status: "Production Ready", desc: "Environment variable and DNS wiring for Vercel/AWS." }
 ];
 
+/**
+ * Animated Runner component that follows the journey path
+ */
+const FinishRunner: React.FC<{ stage: number; status: 'info' | 'warning' | 'error' | 'success' }> = ({ stage, status }) => {
+  return (
+    <motion.div
+      className="absolute top-[35px] z-[20] hidden lg:block"
+      animate={{ 
+        left: `${(stage * 25) + 12.5}%`,
+        x: '-50%' 
+      }}
+      transition={{ 
+        type: "spring", 
+        stiffness: 45, 
+        damping: 15,
+        duration: 0.8
+      }}
+    >
+      <div className="relative">
+        {/* Shadow */}
+        <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-8 h-2 bg-black/10 rounded-full blur-md"></div>
+        
+        {/* Man Icon */}
+        <motion.div 
+          animate={
+            status === 'error' ? { 
+              y: [0, -4, 0], 
+              rotate: [-5, 5, -5],
+              scale: [1, 0.95, 1] 
+            } : 
+            status === 'success' ? {
+              y: [0, -12, 0],
+              rotate: [0, -10, 10, 0],
+              scale: 1.1
+            } : 
+            { 
+              y: [0, -8, 0],
+              rotate: [0, 5, -5, 0]
+            }
+          }
+          transition={{ 
+            repeat: Infinity, 
+            duration: status === 'success' ? 0.3 : 0.6,
+            ease: "easeInOut" 
+          }}
+          className={`w-12 h-12 rounded-2xl flex items-center justify-center text-2xl shadow-xl border-2 border-white transition-colors duration-500 ${
+            status === 'success' ? 'bg-green-600' : 
+            status === 'error' ? 'bg-slate-900' : 
+            'bg-white text-slate-900'
+          }`}
+        >
+          {status === 'success' ? '⚡' : status === 'error' ? '🚧' : '🏃'}
+        </motion.div>
+        
+        {/* Progress Particle Trail */}
+        {status === 'success' && (
+          <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+            {[...Array(6)].map((_, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 1, scale: 0 }}
+                animate={{ opacity: 0, scale: 1.5, x: (i % 2 === 0 ? -20 : 20), y: 20 }}
+                transition={{ repeat: Infinity, duration: 0.5, delay: i * 0.1 }}
+                className="absolute top-1/2 left-1/2 w-1.5 h-1.5 bg-green-400 rounded-full"
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    </motion.div>
+  );
+};
+
 const Home: React.FC<HomeProps> = ({ onNavigate }) => {
   const [activeAudience, setActiveAudience] = useState<AudienceId>('founder');
+  const [activeStageIdx, setActiveStageIdx] = useState(0);
+  const [autoRotate, setAutoRotate] = useState(true);
+
+  // Logic to advance stages and then switch audiences
+  useEffect(() => {
+    if (!autoRotate) return;
+    
+    const interval = setInterval(() => {
+      setActiveStageIdx(prevStage => {
+        if (prevStage < 3) {
+          return prevStage + 1;
+        } else {
+          // Switch Audience after finishing all stages
+          setActiveAudience(currentAudience => {
+            const keys = Object.keys(JOURNEYS) as AudienceId[];
+            const nextIdx = (keys.indexOf(currentAudience) + 1) % keys.length;
+            return keys[nextIdx];
+          });
+          return 0; // Reset to stage 1
+        }
+      });
+    }, 4500); // Time spent per stage
+
+    return () => clearInterval(interval);
+  }, [autoRotate]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -73,6 +235,9 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
     hidden: { opacity: 0, y: 30 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.23, 1, 0.32, 1] } }
   };
+
+  const currentJourney = JOURNEYS[activeAudience];
+  const currentStage = currentJourney.stages[activeStageIdx];
 
   return (
     <div className="pt-20 bg-white selection:bg-green-100">
@@ -135,7 +300,9 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
       </section>
 
       {/* The Journey Section */}
-      <section className="py-32 px-6 bg-slate-50 relative overflow-hidden">
+      <section className="py-32 px-6 bg-slate-50 relative overflow-hidden" 
+               onMouseEnter={() => setAutoRotate(false)} 
+               onMouseLeave={() => setAutoRotate(true)}>
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-10 mb-24">
             <motion.div
@@ -153,7 +320,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
               {(Object.keys(JOURNEYS) as AudienceId[]).map((id) => (
                 <button
                   key={id}
-                  onClick={() => setActiveAudience(id)}
+                  onClick={() => { setActiveAudience(id); setActiveStageIdx(0); setAutoRotate(false); }}
                   className={`px-10 py-5 rounded-[1.6rem] text-[10px] font-black uppercase tracking-[0.2em] transition-all ${
                     activeAudience === id ? 'bg-white text-slate-900 shadow-2xl scale-105' : 'text-slate-500 hover:text-slate-700'
                   }`}
@@ -165,53 +332,72 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
           </div>
 
           <div className="relative">
-            <div className="absolute top-[70px] left-0 right-0 h-[3px] bg-slate-200 hidden lg:block z-0" />
+            {/* The Background Path Line */}
+            <div className="absolute top-[60px] left-0 right-0 h-[3px] bg-slate-200 hidden lg:block z-0" />
+
+            {/* Finish Runner Component */}
+            <FinishRunner stage={activeStageIdx} status={currentStage.status} />
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 relative z-10">
               <AnimatePresence mode="wait">
-                {JOURNEYS[activeAudience].stages.map((stage, idx) => (
+                {currentJourney.stages.map((stage, idx) => (
                   <motion.div
                     key={`${activeAudience}-${idx}`}
                     initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    animate={{ 
+                      opacity: 1, 
+                      y: 0,
+                      scale: activeStageIdx === idx ? 1.02 : 1 
+                    }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ delay: idx * 0.1, duration: 0.5 }}
-                    className="group"
+                    onClick={() => { setActiveStageIdx(idx); setAutoRotate(false); }}
+                    className="group cursor-pointer"
                   >
-                    <div className={`w-16 h-16 rounded-[1.5rem] flex items-center justify-center mb-10 border-4 border-white shadow-2xl transition-all ${
-                      stage.status === 'success' ? 'bg-green-600 text-white rotate-12 scale-110' : 
-                      stage.status === 'error' ? 'bg-slate-900 text-white' : 
+                    <div className={`w-16 h-16 rounded-[1.5rem] flex items-center justify-center mb-10 border-4 border-white shadow-2xl transition-all duration-500 ${
+                      activeStageIdx === idx && stage.status === 'success' ? 'bg-green-600 text-white rotate-12 scale-110 ring-4 ring-green-500/10' : 
+                      activeStageIdx === idx && stage.status === 'error' ? 'bg-slate-900 text-white animate-pulse' : 
+                      activeStageIdx === idx ? 'bg-green-500 text-white' :
                       'bg-white text-slate-400'
                     }`}>
                       <span className="font-mono text-lg font-black">{idx + 1}</span>
                     </div>
 
                     <div className={`p-12 rounded-[3rem] h-full border transition-all duration-500 ${
-                      stage.status === 'success' ? 'bg-white border-green-200 shadow-[0_30px_60px_rgba(34,197,94,0.15)] scale-105 ring-4 ring-green-500/5' :
-                      stage.status === 'error' ? 'bg-slate-900 border-slate-800 text-white shadow-2xl' :
-                      'bg-white border-slate-100 hover:border-slate-300'
+                      activeStageIdx === idx && stage.status === 'success' ? 'bg-white border-green-200 shadow-[0_30px_60px_rgba(34,197,94,0.15)] ring-4 ring-green-500/5' :
+                      activeStageIdx === idx && stage.status === 'error' ? 'bg-slate-900 border-slate-800 text-white shadow-2xl relative' :
+                      activeStageIdx === idx ? 'bg-white border-green-400 shadow-xl' :
+                      'bg-white border-slate-100 opacity-60'
                     }`}>
+                      {stage.status === 'error' && activeStageIdx === idx && (
+                        <div className="absolute top-6 right-8 w-2 h-2 rounded-full bg-red-500 animate-ping"></div>
+                      )}
                       <p className={`font-mono text-[9px] uppercase tracking-[0.3em] mb-6 ${
-                        stage.status === 'success' ? 'text-green-600' : 
-                        stage.status === 'error' ? 'text-red-400' : 'text-slate-400'
+                        activeStageIdx === idx && stage.status === 'success' ? 'text-green-600' : 
+                        activeStageIdx === idx && stage.status === 'error' ? 'text-red-400' : 
+                        activeStageIdx === idx ? 'text-green-500' : 'text-slate-400'
                       }`}>
                         {stage.label}
                       </p>
-                      <h3 className="text-3xl font-bold mb-6 tracking-tight">{stage.title}</h3>
+                      <h3 className="text-3xl font-bold mb-6 tracking-tight leading-[1.1]">{stage.title}</h3>
                       <p className={`text-base leading-relaxed mb-10 ${
-                        stage.status === 'error' ? 'text-slate-400' : 'text-slate-500'
+                        activeStageIdx === idx && stage.status === 'error' ? 'text-slate-400' : 'text-slate-500'
                       }`}>
                         {stage.desc}
                       </p>
 
-                      {stage.code && (
-                        <div className="mt-auto pt-8 border-t border-slate-100/10">
+                      {stage.code && activeStageIdx === idx && (
+                        <motion.div 
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="mt-auto pt-8 border-t border-slate-100/10"
+                        >
                           <code className={`font-mono text-[11px] font-bold px-5 py-2.5 rounded-2xl block overflow-hidden truncate ${
                             stage.status === 'error' ? 'bg-red-500/10 text-red-400' : 'bg-slate-50 text-slate-400'
                           }`}>
                             {stage.code}
                           </code>
-                        </div>
+                        </motion.div>
                       )}
                     </div>
                   </motion.div>

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import type { PageId } from '../types';
+import { PageId } from '../types';
 import { motion } from 'framer-motion';
 
 interface FoundersLandingProps {
@@ -78,7 +78,7 @@ const FoundersLanding: React.FC<FoundersLandingProps> = ({ onNavigate }) => {
             <motion.h1 variants={itemVariants} className="text-6xl md:text-9xl font-black text-slate-900 tracking-tighter mb-8 leading-[0.85]">
               You build the <span className="text-slate-400">vision.</span> <br/>
               We build the <span className="text-green-600 italic">reality.</span>
-            </motion.h1>
+            </h1>
             <motion.p variants={itemVariants} className="text-xl text-slate-500 max-w-2xl mx-auto leading-relaxed mb-12">
               We specialize in unblocking solo-founders. Whether you're stuck in a code loop or ready to scale a prototype, we take your app from <span className="text-slate-900 font-bold underline decoration-green-500/30">"80% done" to production-live.</span>
             </motion.p>

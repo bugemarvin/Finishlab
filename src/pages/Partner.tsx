@@ -1,6 +1,6 @@
 
 import React from 'react';
-import type { PageId } from '../types';
+import { PageId } from '../types';
 import { motion } from 'framer-motion';
 
 interface PartnerProps {
@@ -9,23 +9,23 @@ interface PartnerProps {
 
 const PARTNER_TRACKS = [
   {
-    title: "VC Engineering Reserve",
+    title: "VC Technical Due Diligence",
     quote: "Our portfolio founders build fast prototypes but hit technical walls right before their seed round. We needed a reliable team to step in for the last mile.",
-    solution: "We provide priority diagnostic audits for VC portfolio companies, ensuring technical debt doesn't kill the momentum of a promising startup.",
+    solution: "We provide comprehensive VC technical due diligence and engineering reserve for portfolio companies, ensuring technical debt doesn't stall growth.",
     category: "Venture Capital",
     icon: "🏦"
   },
   {
-    title: "Agency White-Label Shipping",
+    title: "Agency White-Label Services",
     quote: "We are great at design and branding, but we kept getting bogged down in messy API integrations and Stripe webhook loops.",
-    solution: "We act as the invisible engineering hand, taking high-fidelity designs and turning them into stable, production-ready code for your clients.",
+    solution: "We offer premium agency white-label services, acting as your invisible engineering hand to turn designs into production-ready software for your clients.",
     category: "Creative Agencies",
     icon: "🎨"
   },
   {
     title: "Studio Overflow Support",
     quote: "Our core team is focused on high-ticket new builds. We don't have the capacity to handle maintenance or 'unbreaking' smaller legacy projects.",
-    solution: "We handle the 'messy' cleanup projects and smaller maintenance tasks that distract your top-tier engineers, keeping your operations lean.",
+    solution: "Our studio overflow support handles technical cleanup and high-friction maintenance tasks that distract your top-tier engineers, keeping you lean.",
     category: "Dev Studios",
     icon: "⚙️"
   }
@@ -64,14 +64,14 @@ const Partner: React.FC<PartnerProps> = ({ onNavigate }) => {
             className="text-center max-w-5xl mx-auto"
           >
             <motion.p variants={itemVariants} className="text-green-600 font-mono text-[10px] md:text-xs font-black uppercase tracking-[0.4em] mb-6">
-              Strategic Alliances
+              Strategic Startup Partnerships
             </motion.p>
             <motion.h1 variants={itemVariants} className="text-6xl md:text-9xl font-black text-slate-900 tracking-tighter mb-8 leading-[0.85]">
               Be the partner <br/>
               <span className="text-slate-400 italic">who finishes.</span>
             </motion.h1>
             <motion.p variants={itemVariants} className="text-xl text-slate-500 mb-12 leading-relaxed max-w-3xl mx-auto">
-              We work with VCs, creative agencies, and dev studios to ensure their startups and clients actually cross the finish line. Stop letting technical debt stall your ecosystem's growth.
+              We specialize in strategic startup partnerships for VCs, creative agencies, and dev studios. From VC technical due diligence to agency white-label services, we ensure your ecosystem actually crosses the finish line.
             </motion.p>
 
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center gap-6">
@@ -96,7 +96,7 @@ const Partner: React.FC<PartnerProps> = ({ onNavigate }) => {
       <section className="py-24 px-6 bg-slate-50 border-y border-slate-100">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter">Engineered for <span className="text-slate-400">your business model.</span></h2>
+            <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter">Strategic solutions for <span className="text-slate-400">your business model.</span></h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -125,7 +125,7 @@ const Partner: React.FC<PartnerProps> = ({ onNavigate }) => {
                 
                 <div className="mt-auto">
                   <p className="text-slate-700 text-sm leading-relaxed">
-                    <span className="font-extrabold uppercase text-[10px] tracking-wider block mb-2 text-slate-400">The Solution:</span>
+                    <span className="font-extrabold uppercase text-[10px] tracking-wider block mb-2 text-slate-400">The Value:</span>
                     {track.solution}
                   </p>
                 </div>
@@ -139,13 +139,13 @@ const Partner: React.FC<PartnerProps> = ({ onNavigate }) => {
       <section className="py-32 px-6">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-20 items-center">
           <div className="lg:w-1/2">
-            <p className="text-green-600 font-mono text-xs font-bold uppercase tracking-[0.3em] mb-4">Partner Perks</p>
+            <p className="text-green-600 font-mono text-xs font-bold uppercase tracking-[0.3em] mb-4">Partner Advantages</p>
             <h2 className="text-5xl font-black text-slate-900 tracking-tighter mb-8 leading-tight">
               High-trust scaling <br/> 
               <span className="text-slate-400 italic">without the overhead.</span>
             </h2>
             <p className="text-slate-500 text-lg leading-relaxed mb-10">
-              By partnering with Finish, you provide your network with a world-class technical reserve team that operates with senior autonomy.
+              By initiating a startup partnership with FINISH, you provide your network with a world-class technical reserve team. We handle everything from VC technical due diligence to agency white-label services.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {PARTNER_BENEFITS.map((benefit, i) => (
@@ -194,7 +194,7 @@ const Partner: React.FC<PartnerProps> = ({ onNavigate }) => {
             </h2>
             <p className="text-slate-400 text-lg mb-12 leading-relaxed">
               We reward our strategic partners for helping us unblock the world's most innovative builders. 
-              Simple, transparent tracking and monthly payouts.
+              Simple, transparent tracking and monthly payouts for referral startup partnerships.
             </p>
             <button 
               onClick={() => onNavigate('partner-intake')}
@@ -209,13 +209,13 @@ const Partner: React.FC<PartnerProps> = ({ onNavigate }) => {
       {/* SEO Footer Text */}
       <section className="py-24 px-6 border-t border-slate-100">
         <div className="max-w-4xl mx-auto text-left opacity-60">
-           <h3 className="text-lg font-bold text-slate-900 mb-6 tracking-tight">White-Label Engineering & VC Portfolio Support</h3>
+           <h3 className="text-lg font-bold text-slate-900 mb-6 tracking-tight italic">Technical Partner for Last Mile Engineering & Startup Partnerships</h3>
            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-[11px] text-slate-500 leading-relaxed uppercase tracking-wider font-mono">
               <p>
-                Finish Studio is a specialized <strong>Engineering Reserve Team</strong> that partners with <strong>Venture Capital Firms</strong> to provide technical stability to high-risk early-stage investments. We ensure that <strong>Product-Market Fit</strong> isn't stalled by technical debt or crumbling infrastructure.
+                FINISH Inc is a specialized <strong>Engineering Reserve Team</strong> providing <strong>startup partnerships</strong> for <strong>Venture Capital Firms</strong>. We conduct rigorous <strong>VC technical due diligence</strong> to identify technical risk and provide stability to high-fidelity investments.
               </p>
               <p>
-                For <strong>Digital and Creative Agencies</strong>, we offer <strong>White-Label Engineering</strong> services to handle complex backend logic, API integrations, and production deployments. We act as your high-fidelity technical arm, allowing you to focus on growth and branding.
+                We provide <strong>agency white-label services</strong> to handle complex backend logic and <strong>studio overflow support</strong> for high-growth tech ecosystems. Our mission is to ensure <strong>Product-Market Fit</strong> is never stalled by technical friction or unmanaged technical debt.
               </p>
            </div>
         </div>

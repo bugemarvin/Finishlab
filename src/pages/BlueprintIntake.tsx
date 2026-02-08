@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import type { PageId } from '../types';
+import { PageId } from '../types';
 import { motion } from 'framer-motion';
 
 interface BlueprintIntakeProps {

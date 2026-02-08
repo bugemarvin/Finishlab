@@ -1,6 +1,6 @@
 
 import React from 'react';
-import type { PageId } from '../types';
+import { PageId } from '../types';
 import { motion } from 'framer-motion';
 
 interface HowItWorksProps {
@@ -99,7 +99,7 @@ const HowItWorks: React.FC<HowItWorksProps> = ({ onNavigate }) => {
                 whileInView={{ height: "100%" }}
                 viewport={{ once: true }}
                 transition={{ duration: 2, ease: "easeInOut" }}
-                className="w-full bg-green-500 origin-top"
+                className="w-full bg-green-50 origin-top"
               />
             </div>
 
@@ -161,7 +161,7 @@ const HowItWorks: React.FC<HowItWorksProps> = ({ onNavigate }) => {
                 onClick={() => onNavigate('diagnostic')}
                 className="bg-green-600 hover:bg-green-500 text-white px-8 py-4 rounded-xl font-black text-sm uppercase tracking-widest transition-all"
               >
-                Diagnostic Intake
+                Diagnose my app
               </button>
             </div>
 
