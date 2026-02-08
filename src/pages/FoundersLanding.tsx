@@ -220,7 +220,7 @@ const FoundersLanding: React.FC<FoundersLandingProps> = ({ onNavigate }) => {
           <h2 className="text-4xl font-black text-white tracking-tighter mb-20 italic">"Engineering the Finish."</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-left">
             {[
-              { founder: "Alex Rivera", company: "Fluxify AI", quote: "We were stuck in a deployment loop for 3 weeks. Finish Studio resolved the infra issues in 48 hours. We launched the next day." },
+              { founder: "Alex Rivera", company: "Fluxify AI", quote: "We were stuck in a deployment loop for 3 weeks. Finish Inc resolved the infra issues in 48 hours. We launched the next day." },
               { founder: "Sarah Chen", company: "HealthStack", quote: "The AI code was a black box. Finish refactored our core auth and payments flow. Now we handle 1k+ daily active users without a glitch." },
               { founder: "Marcus Thorne", company: "DevLayer", quote: "No fluff, just clean PRs. They act like an extension of my brain. Best engineering investment I've made." }
             ].map((t, i) => (
@@ -278,7 +278,7 @@ const FoundersLanding: React.FC<FoundersLandingProps> = ({ onNavigate }) => {
            <h3 className="text-lg font-bold text-slate-900 mb-6 tracking-tight">Software Studio for Solo Founders</h3>
            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-[11px] text-slate-500 leading-relaxed uppercase tracking-wider font-mono">
               <p>
-                Finish Studio is a specialized engineering partner for early-stage startup founders. We focus on <strong>Last Mile Engineering</strong>—the critical phase between prototyping and production. Our services include <strong>Stripe Integration</strong>, <strong>Authentication Debugging</strong>, <strong>Database Optimization</strong>, and <strong>Cloud Deployment</strong>.
+                Finish Inc is a specialized engineering partner for early-stage startup founders. We focus on <strong>Last Mile Engineering</strong>—the critical phase between prototyping and production. Our services include <strong>Stripe Integration</strong>, <strong>Authentication Debugging</strong>, <strong>Database Optimization</strong>, and <strong>Cloud Deployment</strong>.
               </p>
               <p>
                 We bridge the gap for founders using AI development tools like <strong>Cursor</strong>, <strong>Lovable</strong>, and <strong>v0</strong>. By providing senior-level technical oversight, we ensure your product is scalable, secure, and ready for market launch.

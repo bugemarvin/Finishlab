@@ -276,7 +276,7 @@ const DevelopersLanding: React.FC<DevelopersLandingProps> = ({ onNavigate }) => 
            <h3 className="text-lg font-bold text-slate-900 mb-6 tracking-tight">Surgical Engineering & Code Refactoring for Developers</h3>
            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-[11px] text-slate-500 leading-relaxed uppercase tracking-wider font-mono">
               <p>
-                Finish Studio provides senior-level <strong>Engineering Reserve</strong> support for technical leads and solo developers. We specialize in <strong>Refactoring AI-Generated Code</strong>, resolving <strong>Next.js Hydration Errors</strong>, and optimizing <strong>Database Schema Performance</strong>.
+                Finish Inc provides senior-level <strong>Engineering Reserve</strong> support for technical leads and solo developers. We specialize in <strong>Refactoring AI-Generated Code</strong>, resolving <strong>Next.js Hydration Errors</strong>, and optimizing <strong>Database Schema Performance</strong>.
               </p>
               <p>
                 Our surgical approach ensures <strong>Production Stability</strong> and <strong>Security Compliance</strong>. We operate with high autonomy, providing clean, tested, and documented <strong>GitHub Pull Requests</strong> that unblock your engineering roadmap.
