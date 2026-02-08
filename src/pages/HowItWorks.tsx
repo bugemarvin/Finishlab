@@ -217,8 +217,8 @@ const HowItWorks: React.FC<HowItWorksProps> = ({ onNavigate }) => {
             </div>
           </motion.div>
           
-          <div className="mt-16 flex items-center justify-center gap-12 grayscale opacity-40">
-             <div className="font-black text-xl tracking-tighter italic">FINISH.STUDIO</div>
+          <div className="mt-16 flex flex-col sm:flex-row items-center justify-center gap-12 grayscale opacity-40">
+             <div className="font-black text-xl tracking-tighter italic">FINISH.INC</div>
              <div className="w-1.5 h-1.5 rounded-full bg-slate-200"></div>
              <div className="font-black text-xl tracking-tighter italic">OPS.LIVE</div>
              <div className="w-1.5 h-1.5 rounded-full bg-slate-200"></div>
