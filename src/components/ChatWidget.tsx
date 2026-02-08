@@ -100,7 +100,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ onNavigate }) => {
 
   const initChat = () => {
     if (!chatInstance.current) {
-      const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GOOGLE_GENAI_KEY });
+      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       chatInstance.current = ai.chats.create({
         model: 'gemini-3-flash-preview',
         config: {
