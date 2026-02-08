@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageId } from '../types';
+import type { PageId } from '../types';
 
 interface StoriesProps {
   onNavigate: (page: PageId) => void;

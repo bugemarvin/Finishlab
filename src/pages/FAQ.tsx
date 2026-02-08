@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { PageId } from '../types';
+import type { PageId } from '../types';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface FAQProps {

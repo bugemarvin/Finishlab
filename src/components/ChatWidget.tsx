@@ -1,6 +1,6 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-import { PageId } from '../types';
+import type { PageId } from '../types';
 import { GoogleGenAI, Chat, GenerateContentResponse } from "@google/genai";
 
 interface Message {
@@ -100,7 +100,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ onNavigate }) => {
 
   const initChat = () => {
     if (!chatInstance.current) {
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+      const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GOOGLE_GENAI_KEY });
       chatInstance.current = ai.chats.create({
         model: 'gemini-3-flash-preview',
         config: {
@@ -140,6 +140,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ onNavigate }) => {
       setMessages(prev => [...prev, { role: 'assistant', content: response.text || "I'm sorry, I couldn't process that request right now." }]);
     } catch (err) {
       setMessages(prev => [...prev, { role: 'assistant', content: "Connection error. Please try again or contact hello@finishlab.app directly." }]);
+      console.error('Chat error:', err);
     } finally { 
       setIsTyping(false); 
     }

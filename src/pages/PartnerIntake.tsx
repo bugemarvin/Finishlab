@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { PageId } from '../types';
+import type { PageId } from '../types';
 import { motion, AnimatePresence } from 'framer-motion';
 import { GoogleGenAI } from "@google/genai";
 
@@ -41,12 +41,13 @@ const PartnerIntake: React.FC<PartnerIntakeProps> = ({ onNavigate }) => {
         generateAiPartnerTip();
       }, 1500);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formData.collaborationGoals, formData.techCapabilities]);
 
   const generateAiPartnerTip = async () => {
     setIsAiThinking(true);
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+      const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GOOGLE_GENAI_KEY });
       const response = await ai.models.generateContent({
         model: 'gemini-3-flash-preview',
         contents: `Act as the Partnerships Director at FINISH Inc. 

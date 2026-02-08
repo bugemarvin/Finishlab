@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { PageId } from '../types';
+import type { PageId } from '../types';
 import { GoogleGenAI } from "@google/genai";
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -80,7 +80,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onNavigate }
   const handleAiArchitectSearch = async (input: string) => {
     setIsAiThinking(true);
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+      const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GOOGLE_GENAI_KEY });
       const response = await ai.models.generateContent({
         model: 'gemini-3-flash-preview',
         contents: `Act as the Lead Solutions Architect at FINISH Inc. 
@@ -111,7 +111,12 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onNavigate }
         }`,
         config: { responseMimeType: "application/json" }
       });
-      const data = JSON.parse(response.text);
+      const text = response.text;
+      if (!text) {
+        console.error("Empty response from AI");
+        return;
+      }
+      const data = JSON.parse(text);
       setAiDiagnosis(data);
       // On mobile, if AI diagnosis arrives, don't necessarily switch tabs automatically to avoid jarring UI, 
       // but the UI will show a badge or the side panel on desktop.
