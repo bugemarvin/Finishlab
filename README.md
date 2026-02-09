@@ -1,73 +1,169 @@
-# React + TypeScript + Vite
+# FINISH Lab
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+FINISH is a high-velocity engineering service focused on shipping "almost done" applications to production in **24–72 hours**. This repository contains the **FINISH marketing site / frontend app** built with **React, TypeScript, and Vite**, optimized for speed, clarity, and conversion.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🧱 Tech Stack
 
-## React Compiler
+* **React** – UI library
+* **TypeScript** – Static typing and maintainability
+* **Vite** – Fast dev server & build tooling
+* **Yarn** – Package manager
+* **Tailwind CSS** – Utility-first styling (if applicable)
+* **Gimmnie** – AI bot used for internal automation and assistance
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+---
 
-## Expanding the ESLint configuration
+## 📁 Project Structure
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+finish/
+├─ public/                # Static assets
+├─ src/
+│  ├─ assets/             # Images, icons, branding
+│  ├─ components/         # Reusable UI components
+│  ├─ pages/              # Page-level components (Home, Pricing, FAQ, etc.)
+│  ├─ layouts/            # Layout wrappers (Navbar, Footer)
+│  ├─ hooks/              # Custom React hooks
+│  ├─ utils/              # Helpers and utilities
+│  ├─ styles/             # Global styles (if not fully Tailwind)
+│  ├─ App.tsx             # Root component
+│  └─ main.tsx            # App entry point
+├─ index.html
+├─ vite.config.ts
+├─ tsconfig.json
+├─ package.json
+└─ README.md
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🚀 Getting Started
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Prerequisites
+
+* **Node.js** ≥ 18
+* **Yarn** ≥ 1.22
+
+### Install Dependencies
+
+```bash
+yarn install
 ```
+
+### Start Development Server
+
+```bash
+yarn dev
+```
+
+App will be available at:
+
+```
+http://localhost:5173
+```
+
+---
+
+## 🏗️ Build for Production
+
+```bash
+yarn build
+```
+
+Preview the production build locally:
+
+```bash
+yarn preview
+```
+
+---
+
+## 🎯 Key Pages & Sections
+
+* **Home** – Primary value proposition and CTA ("Fix My App Now")
+* **How It Works** – Engagement and delivery process
+* **Pricing** – Clear, fixed-scope pricing
+* **Why FINISH** – Differentiation and trust signals
+* **FAQ** – Objection handling
+
+---
+
+## 🤖 Gimmnie Bot
+
+This project uses an internal automation bot built with **Gimmnie** to support:
+
+* Internal workflows
+* Lead handling & routing
+* Developer and ops assistance
+* Process automation (non-customer facing)
+
+> Gimmnie is **not part of the frontend bundle** but is a supporting system in the FINISH ecosystem.
+
+---
+
+## 🎨 Design Principles
+
+* Minimal, high-contrast UI
+* Strong primary CTA focus
+* Fast load times
+* Clear technical credibility
+* Conversion-first layout
+
+---
+
+## 🧪 Linting & Type Safety
+
+If configured:
+
+```bash
+yarn lint
+yarn typecheck
+```
+
+---
+
+## 📦 Deployment
+
+The app is compatible with:
+
+* Vercel
+* Netlify
+* Cloudflare Pages
+* Static hosting (S3, Nginx, etc.)
+
+Typical Vercel setup:
+
+* **Build Command:** `yarn build`
+* **Output Directory:** `dist`
+
+---
+
+## 🔐 Environment Variables
+
+If required, define them in:
+
+```
+.env
+```
+
+Example:
+
+```
+GEMINI_API_KEY=XXXXXXXXXX
+```
+
+---
+
+## 📄 License
+
+© FINISH. All rights reserved.
+
+---
+
+## ✨ Maintainers
+
+Built and maintained by the **FINISH Engineering Team**.
+
+High-velocity. Production-first. No excuses.
