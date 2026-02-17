@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import React, { useState, useEffect } from 'react';
 import type { PageId } from '../types';
@@ -17,8 +18,9 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenSearch }
   const navItems = [
     { id: 'home', label: 'Home' },
     { id: 'how-it-works', label: 'How It Works' },
+    { id: 'portfolio', label: 'Portfolio' },
     { id: 'pricing', label: 'Pricing' },
-    { id: 'why-finish', label: 'Why FINISH' },
+    { id: 'why-finish', label: 'Why Finish' },
     { id: 'faq', label: 'FAQ' },
   ] as const;
 
@@ -108,8 +110,8 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenSearch }
           {navItems.map((item) => (
             <button
               key={item.id}
-              onClick={() => handleNavigate(item.id)}
-              className={`text-[12px] xl:text-[13px] font-bold uppercase tracking-wider transition-all hover:text-green-600 relative py-2 ${
+              onClick={() => handleNavigate(item.id as any)}
+              className={`text-[13px] xl:text-[14px] font-bold tracking-tight transition-all hover:text-green-600 relative py-2 ${
                 currentPage === item.id ? 'text-green-600' : 'text-slate-500'
               }`}
             >
@@ -131,15 +133,15 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenSearch }
             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
-            <span className="hidden md:inline uppercase tracking-widest text-[9px]">Quick Search</span>
-            <kbd className="hidden lg:inline-flex items-center gap-1 bg-white/50 px-1.5 py-0.5 rounded text-[9px] font-sans ml-1 shadow-sm text-slate-400">
+            <span className="hidden md:inline tracking-tight text-[11px]">Quick Search</span>
+            <kbd className="hidden lg:inline-flex items-center gap-1 bg-white/50 px-1.5 py-0.5 rounded text-[9px] font-sans ml-1 shadow-sm text-slate-400 border border-slate-100">
               ⌘K
             </kbd>
           </button>
           
           <button 
             onClick={() => handleNavigate('diagnostic')}
-            className="hidden lg:block bg-green-600 hover:bg-green-700 text-white px-6 xl:px-8 py-3 rounded-xl font-black text-[12px] uppercase tracking-widest transition-all transform active:scale-95 shadow-xl shadow-green-100 border-none"
+            className="hidden lg:block bg-green-600 hover:bg-green-700 text-white px-6 xl:px-8 py-3 rounded-xl font-black text-[13px] tracking-tight transition-all transform active:scale-95 shadow-xl shadow-green-100 border-none"
           >
             Fix My App
           </button>
@@ -174,7 +176,7 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenSearch }
             {navItems.map((item, index) => (
               <button
                 key={item.id}
-                onClick={() => handleNavigate(item.id)}
+                onClick={() => handleNavigate(item.id as any)}
                 className={`group flex items-center justify-between py-5 text-2xl sm:text-3xl font-black tracking-tighter transition-all text-left ${
                   currentPage === item.id ? 'text-green-600' : 'text-slate-900 hover:pl-2'
                 } ${isMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-12 opacity-0'}`}
@@ -182,7 +184,7 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenSearch }
               >
                 <span>{item.label}</span>
                 <div className={`flex items-center gap-2 transition-all ${currentPage === item.id ? 'opacity-100 scale-100' : 'opacity-0 scale-50 group-hover:opacity-30'}`}>
-                  <span className="text-[10px] font-bold text-green-500 uppercase tracking-widest hidden sm:inline">Active</span>
+                  <span className="text-[10px] font-bold text-green-500 tracking-widest hidden sm:inline uppercase">Active</span>
                   <div className="h-2 w-2 rounded-full bg-green-500"></div>
                 </div>
               </button>
@@ -198,7 +200,7 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenSearch }
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
               </div>
-              <span className="uppercase tracking-[0.2em] text-[10px] font-black">Search Directory</span>
+              <span className="tracking-tight text-xs font-black">Search Directory</span>
             </button>
           </nav>
 

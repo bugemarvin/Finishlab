@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import type { PageId } from './types';
 import Header from './components/Header';
@@ -9,6 +8,7 @@ import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
 import HowItWorks from './pages/HowItWorks';
 import Pricing from './pages/Pricing';
+import Portfolio from './pages/Portfolio';
 import WhyFinish from './pages/WhyFinish';
 import FAQ from './pages/FAQ';
 import DiagnosticForm from './pages/DiagnosticForm';
@@ -33,11 +33,12 @@ const App: React.FC = () => {
     const pageMetadata: Record<PageId, { title: string; description: string }> = {
       'home': { title: 'FINISH | Your App. Actually Finished.', description: 'Take your AI-built or prototype app to production with FINISH Inc.' },
       'how-it-works': { title: 'How It Works | FINISH Process', description: 'Our 3-step engineering pipeline to stabilize, wire, and ship your application.' },
+      'portfolio': { title: 'Portfolio | Shipped by FINISH', description: 'Explore the high-fidelity projects we have bridged from prototype to production.' },
       'pricing': { title: 'Pricing & Packages | FINISH Inc', description: 'Transparent pricing for software finishing.' },
       'why-finish': { title: 'Why FINISH? | The Last Mile Engineering', description: 'Learn why AI apps fail at 80% and how our human engineers bridge the gap.' },
       'faq': { title: 'Technical FAQ | FINISH Inc Support', description: 'Frequently asked questions about IP ownership and process.' },
       'diagnostic': { title: 'Fix My App | Diagnostic Intake Form', description: 'Submit your project details for a 24-hour fixed-price project quote.' },
-      'partner': { title: 'Partner with FINISH | Ecosystem Alliances', description: 'Strategic partnerships for VCs, Agencies, and Studios.' },
+      'partner': { title: 'Startup Partnerships & VC Technical Due Diligence | FINISH Inc', description: 'Powering VCs with expert technical due diligence and agencies with premium white-label software services. Studio overflow support for high-growth tech ecosystems.' },
       'partner-intake': { title: 'Partner Onboarding | FINISH Inc', description: 'Apply to join our partner ecosystem as a VC, Agency, or Individual.' },
       'stories': { title: 'Founder Stories | Shipped by FINISH', description: 'Real-world case studies of apps that were stuck.' },
       'for-founders': { title: 'For Founders | FINISH Inc', description: 'Specialized support for solo founders and visionaries.' },
@@ -59,7 +60,7 @@ const App: React.FC = () => {
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '') as PageId;
-      const validPages: PageId[] = ['home', 'how-it-works', 'pricing', 'why-finish', 'faq', 'diagnostic', 'partner', 'partner-intake', 'stories', 'for-founders', 'for-startups', 'for-developers', 'idea-stage', 'blueprint-workflow', 'blueprint-intake', 'privacy-policy', 'terms-of-service'];
+      const validPages: PageId[] = ['home', 'how-it-works', 'portfolio', 'pricing', 'why-finish', 'faq', 'diagnostic', 'partner', 'partner-intake', 'stories', 'for-founders', 'for-startups', 'for-developers', 'idea-stage', 'blueprint-workflow', 'blueprint-intake', 'privacy-policy', 'terms-of-service'];
       if (hash && validPages.includes(hash)) setCurrentPage(hash);
     };
     window.addEventListener('hashchange', handleHashChange);
@@ -77,6 +78,7 @@ const App: React.FC = () => {
     switch (currentPage) {
       case 'home': return <Home onNavigate={navigate} />;
       case 'how-it-works': return <HowItWorks onNavigate={navigate} />;
+      case 'portfolio': return <Portfolio onNavigate={navigate} />;
       case 'pricing': return <Pricing onNavigate={navigate} />;
       case 'why-finish': return <WhyFinish onNavigate={navigate} />;
       case 'faq': return <FAQ onNavigate={navigate} />;
@@ -107,7 +109,7 @@ const App: React.FC = () => {
         </AnimatePresence>
       </main>
       <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} onNavigate={navigate} />
-      <ChatWidget />
+      <ChatWidget onNavigate={navigate} />
       <ScrollToTop />
       <Footer onNavigate={navigate} />
     </div>

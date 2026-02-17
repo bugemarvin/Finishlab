@@ -44,8 +44,9 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <ul className="space-y-4">
               <li><button onClick={() => onNavigate('home')} className="text-slate-500 hover:text-green-600 text-sm transition-colors text-left w-full">Home</button></li>
               <li><button onClick={() => onNavigate('how-it-works')} className="text-slate-500 hover:text-green-600 text-sm transition-colors text-left w-full">How It Works</button></li>
+              <li><button onClick={() => onNavigate('portfolio')} className="text-slate-500 hover:text-green-600 text-sm transition-colors text-left w-full">Portfolio</button></li>
               <li><button onClick={() => onNavigate('pricing')} className="text-slate-500 hover:text-green-600 text-sm transition-colors text-left w-full">Pricing</button></li>
-              <li><button onClick={() => onNavigate('why-finish')} className="text-slate-500 hover:text-green-600 text-sm transition-colors text-left w-full">Why FINISH</button></li>
+              <li><button onClick={() => onNavigate('why-finish')} className="text-slate-500 hover:text-green-600 text-sm transition-colors text-left w-full">Why Finish</button></li>
               <li><button onClick={() => onNavigate('faq')} className="text-slate-500 hover:text-green-600 text-sm transition-colors text-left w-full">FAQ</button></li>
             </ul>
           </div>
@@ -65,7 +66,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <div className="space-y-6">
             <h4 className="font-bold text-slate-900 text-[15px]">Life Cycle</h4>
             <ul className="space-y-4">
-              <li><button onClick={() => onNavigate('idea-stage')} className="text-slate-500 hover:text-green-600 text-sm transition-colors text-left w-full">Idea Stage (FINISH Start)</button></li>
+              <li><button onClick={() => onNavigate('idea-stage')} className="text-slate-500 hover:text-green-600 text-sm transition-colors text-left w-full">Idea Stage (Studio Start)</button></li>
               <li><button onClick={() => onNavigate('how-it-works')} className="text-slate-500 hover:text-green-600 text-sm transition-colors text-left w-full">The Build (Execution)</button></li>
               <li><button onClick={() => onNavigate('diagnostic')} className="text-slate-500 hover:text-green-600 text-sm transition-colors text-left w-full">The Finish (Production)</button></li>
               <li><button onClick={() => onNavigate('for-startups')} className="text-slate-500 hover:text-green-600 text-sm transition-colors text-left w-full">The Scale (Reserve Team)</button></li>

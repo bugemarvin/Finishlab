@@ -3,6 +3,7 @@ export type PageId =
   | 'home' 
   | 'how-it-works' 
   | 'pricing' 
+  | 'portfolio'
   | 'why-finish' 
   | 'faq' 
   | 'diagnostic' 
