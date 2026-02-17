@@ -26,70 +26,56 @@ interface Project {
 
 const PROJECTS: Project[] = [
   {
-    id: 'fintrack',
-    name: 'FinTrack Pro',
-    url: 'https://demo.fintrack.io',
-    tag: 'FinTech SaaS',
-    desc: 'Advanced portfolio management for high-net-worth individuals.',
-    stack: ['Next.js', 'Prisma', 'Stripe', 'Supabase'],
-    finishImpact: 'Resolved a critical memory leak in the real-time ticker and secured the multi-tenant DB structure.',
+    id: 'second-spring-retreat',
+    name: 'The Second Spring Sisterhood Retreat',
+    url: 'https://melspeakslife.com/sss-retreat/',
+    tag: 'Wellness Retreat',
+    desc: 'A transformational 4-day women’s retreat in Ubud, Bali focused on healing, renewal, and sisterhood.',
+    stack: ['React', 'Vite', 'Tailwind CSS'],
+    finishImpact: 'Designed and implemented a high-conversion retreat landing experience with structured content sections, immersive storytelling flow, and optimized performance for mobile-first users.',
     scrapedData: {
-      title: 'FinTrack Pro | Wealth Management Reimagined',
-      description: 'The premier platform for tracking global assets with surgical precision.',
-      keywords: ['Wealth', 'Assets', 'Ticker', 'Real-time'],
+      title: 'The Second Spring Sisterhood Retreat | Blossom into Full Bloom',
+      description: 'Join The Second Spring Sisterhood Retreat in Ubud, Bali (March 24–27, 2026). A 4-day transformational experience led by Coach Melle designed for healing, renewal, and rising into your full bloom.',
+      keywords: [
+        'Second Spring Retreat',
+        'Sisterhood Retreat',
+        'Women’s Retreat Bali',
+        'Ubud Wellness Retreat',
+        'Coach Melle',
+        'Healing Retreat 2026',
+        'Bali Sisterhood Experience',
+        'Women Empowerment Retreat'
+      ],
       ssl: true,
-      loadTime: '0.8s'
+      loadTime: 'Optimized (Vite build + Tailwind JIT)'
     }
   },
   {
-    id: 'healthsync',
-    name: 'HealthSync',
-    url: 'https://demo.healthsync.app',
-    tag: 'MedTech',
-    desc: 'HIPAA-compliant data synchronization for clinic networks.',
-    stack: ['Node.js', 'AWS', 'Auth0', 'PostgreSQL'],
-    finishImpact: 'Hardened the Auth0 identity bridge and optimized complex relational queries for patient records.',
+    id: 'noodle-agent-ai',
+    name: 'Noodle Agent AI',
+    url: 'https://noodleagent.ai/',
+    tag: 'AI Automation',
+    desc: 'AI as a Service (AIaaS) platform helping businesses automate workflows, personalize customer engagement, and unlock data-driven insights.',
+    stack: ['WordPress', 'PHP', 'Zapier Integration'],
+    finishImpact: 'Audited WordPress structure, reviewed performance posture, and mapped service architecture positioning for scalability and AI solution clarity.',
     scrapedData: {
-      title: 'HealthSync | HIPAA Compliant Data Ops',
-      description: 'Unifying patient data across distributed clinic nodes securely.',
-      keywords: ['MedTech', 'Compliance', 'Sync', 'Data'],
+      title: 'Noodle Agent AI – AI Superstars to Grow Your Business',
+      description: 'Save time, cut costs, and maximise profits with data-driven AI solutions. Noodle Agent AI delivers custom AI agents, automation systems, and intelligent data integration for modern businesses.',
+      keywords: [
+        'AI as a Service',
+        'Business Automation',
+        'Custom AI Agents',
+        'Workflow Automation',
+        'Data Integration',
+        'AI Chatbots',
+        'LLM Integration'
+      ],
       ssl: true,
-      loadTime: '1.2s'
+      loadTime: 'Standard WordPress (exact metrics not publicly exposed)'
     }
   },
-  {
-    id: 'petconnect',
-    name: 'PetConnect',
-    url: 'https://demo.petconnect.social',
-    tag: 'Marketplace',
-    desc: 'Hyper-local marketplace for dog walkers and specialized pet care.',
-    stack: ['Next.js', 'Clerk', 'Stripe Webhooks', 'Vercel'],
-    finishImpact: 'Wired the Stripe webhook listener system and fixed a production-only hydration mismatch loop.',
-    scrapedData: {
-      title: 'PetConnect | Find Local Pet Care',
-      description: 'Connect with vetted pet professionals in your neighborhood.',
-      keywords: ['Pet Care', 'Dog Walker', 'Marketplace', 'Social'],
-      ssl: true,
-      loadTime: '0.9s'
-    }
-  },
-  {
-    id: 'hire-reserve',
-    name: 'HireReserve',
-    url: 'https://demo.hirereserve.tech',
-    tag: 'HR Tech',
-    desc: 'On-demand engineering talent platform for scaling startups.',
-    stack: ['React', 'Express', 'JWT', 'PostgreSQL'],
-    finishImpact: 'Implemented a robust JWT persistence strategy and fixed session leaks in the contractor dashboard.',
-    scrapedData: {
-      title: 'HireReserve | Engineering Talent On-Demand',
-      description: 'The surgical strike team for your startup technical debt.',
-      keywords: ['Talent', 'Engineering', 'Hiring', 'Startups'],
-      ssl: true,
-      loadTime: '1.1s'
-    }
-  }
 ];
+
 
 const ProjectModal: React.FC<{ project: Project; onClose: () => void }> = ({ project, onClose }) => {
   return (
